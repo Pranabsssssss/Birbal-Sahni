@@ -170,7 +170,7 @@ export default function Scene3D() {
       className={`fixed inset-0 transition-colors duration-500 ${
         isLightbox 
           ? "z-[80] pointer-events-auto bg-black/85 backdrop-blur-md" 
-          : "z-0 pointer-events-none"
+          : "z-0 pointer-events-none md:pointer-events-auto"
       }`}
     >
       {isLightbox && (
@@ -203,7 +203,7 @@ export default function Scene3D() {
           camera={{ position: [0, 0, 8], fov: 45 }}
           shadows={{ type: THREE.PCFShadowMap }}
           gl={{ antialias: true, alpha: true }}
-          style={{ background: "transparent", pointerEvents: isLightbox ? "auto" : "none" }}
+          style={{ background: "transparent" }}
         >
           {!isLightbox && <ScrollTracker onProgress={setScrollProgress} />}
 
