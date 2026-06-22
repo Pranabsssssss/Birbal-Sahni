@@ -12,14 +12,11 @@ import ScrollProgress from "@/components/ScrollProgress";
 export default function Home() {
   return (
     <>
-      {}
       <Scene3DWrapper />
 
       <FullscreenLock>
-        {/* Diagnostics preloader */}
         <Preloader />
 
-        {}
         <ScrollProvider>
           <ScrollProgress />
           <main className="relative z-10 pointer-events-none">

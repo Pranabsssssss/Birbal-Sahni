@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useRef, useEffect } from "react";
+import { Suspense, useState, useRef, useEffect, useCallback } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Html, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -92,6 +92,11 @@ export default function Scene3D() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [webGLSupported, setWebGLSupported] = useState(true);
   const [isLightbox, setIsLightbox] = useState(false);
+  const lightboxRef = useRef(false);
+
+  useEffect(() => {
+    lightboxRef.current = isLightbox;
+  }, [isLightbox]);
 
   useEffect(() => {
     try {
@@ -114,12 +119,35 @@ export default function Scene3D() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && lightboxRef.current) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
         setIsLightbox(false);
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+
+    document.addEventListener("keydown", handleKeyDown, { capture: true });
+    return () => document.removeEventListener("keydown", handleKeyDown, { capture: true });
+  }, []);
+
+  useEffect(() => {
+    if (!isLightbox) return;
+
+    const handleFullscreenExit = () => {
+      if (!document.fullscreenElement && lightboxRef.current) {
+        setIsLightbox(false);
+        setTimeout(() => {
+          document.documentElement.requestFullscreen().catch(() => {});
+        }, 50);
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenExit);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenExit);
+  }, [isLightbox]);
+
+  const closeLightbox = useCallback(() => {
+    setIsLightbox(false);
   }, []);
 
   if (!webGLSupported) {
@@ -142,7 +170,7 @@ export default function Scene3D() {
       className={`fixed inset-0 transition-colors duration-500 ${
         isLightbox 
           ? "z-[80] pointer-events-auto bg-black/85 backdrop-blur-md" 
-          : "z-0 pointer-events-none md:pointer-events-auto"
+          : "z-0 pointer-events-none"
       }`}
     >
       {isLightbox && (
@@ -157,7 +185,7 @@ export default function Scene3D() {
               </span>
             </div>
             <button 
-              onClick={() => setIsLightbox(false)}
+              onClick={closeLightbox}
               className="px-4 py-2 border border-purple-500/30 hover:border-purple-400 bg-purple-950/20 text-purple-300 hover:text-white rounded text-[10px] tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer hover:shadow-[0_0_15px_rgba(168,85,247,0.35)]"
             >
               CLOSE PREVIEW [ESC]
@@ -175,7 +203,7 @@ export default function Scene3D() {
           camera={{ position: [0, 0, 8], fov: 45 }}
           shadows={{ type: THREE.PCFShadowMap }}
           gl={{ antialias: true, alpha: true }}
-          style={{ background: "transparent" }}
+          style={{ background: "transparent", pointerEvents: isLightbox ? "auto" : "none" }}
         >
           {!isLightbox && <ScrollTracker onProgress={setScrollProgress} />}
 
