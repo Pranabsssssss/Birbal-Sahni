@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #050208;
+  --color-foreground: #eee9ff;
+  --color-accent: #d7b3ff;
+  --color-accent-deep: #a855f7;
+  --color-surface: #0d0a18;
+  --color-surface-light: #1a1528;
+  --color-muted: rgba(238, 233, 255, 0.5);
+  --color-border: rgba(167, 139, 250, 0.08);
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-mono: var(--font-space-grotesk), monospace;
+}
+
+/* ── Base ────────────────────────────────────── */
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: #050208;
+  color: #eee9ff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Custom Scrollbar ────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.2);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(167, 139, 250, 0.5);
+}
+
+/* ── Selection ───────────────────────────────── */
+::selection {
+  background: rgba(167, 139, 250, 0.3);
+  color: #ffffff;
+}
+
+/* ── Grain Texture ───────────────────────────── */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+}
+
+/* ── Section Titles — editorial style ────────── */
+.section-title {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 100;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  color: #eee9ff;
+}
+
+.section-subtitle {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  color: #d7b3ff;
+  letter-spacing: -0.01em;
+}
+
+/* ── Glassmorphism Card — deep purple ────────── */
+.glass-card {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(13, 10, 24, 0.6);
+  border: 1px solid rgba(167, 139, 250, 0.08);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(167, 139, 250, 0.2);
+  background: rgba(26, 21, 40, 0.7);
+  box-shadow: 
+    0 32px 64px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(167, 139, 250, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* ── Glow effects ────────────────────────────── */
+.glow-purple {
+  box-shadow: 0 0 80px rgba(168, 85, 247, 0.15), 0 0 160px rgba(168, 85, 247, 0.05);
+}
+
+.glow-text {
+  text-shadow: 0 0 40px rgba(215, 179, 255, 0.3), 0 0 80px rgba(215, 179, 255, 0.1);
+}
+
+/* ── Premium Badge ───────────────────────────── */
+.badge {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1px;
+  text-transform: uppercase;
+}
+.badge-mentor {
+  background: rgba(168, 85, 247, 0.15);
+  color: #d7b3ff;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+.badge-lead {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* ── Reveal animations ───────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Horizontal line separator ───────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.15), transparent);
+}
+
+/* ── Custom cursor overrides ─────────────────── */
+* {
+  cursor: none !important;
+}
+
+/* ── Console Tech Details ────────────────────── */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: 
+    linear-gradient(rgba(168, 85, 247, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.tech-border {
+  position: relative;
+}
+.tech-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid rgba(215, 179, 255, 0.4);
+  border-left: 1px solid rgba(215, 179, 255, 0.4);
+  pointer-events: none;
+}
+.tech-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  border-bottom: 1px solid rgba(215, 179, 255, 0.4);
+  border-right: 1px solid rgba(215, 179, 255, 0.4);
+  pointer-events: none;
+}
+
+.scan-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(215, 179, 255, 0.3), transparent);
+  animation: scan 4s linear infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+.group:hover .scan-bar {
+  opacity: 1;
+}
+
+.blink-dot {
+  animation: blink 1.5s infinite steps(2);
+}
+@keyframes blink {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
