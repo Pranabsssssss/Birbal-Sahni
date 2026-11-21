@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "Delhi Bootcamp",
   ],
   icons: {
-    icon: "https://assets.techforge.pranab.xyz/assets/Logo-Dark.svg",
+    icon: "https://birbalassets.pranab.space/assets/Logo-Dark.svg",
   },
   openGraph: {
     title: "Team Birbal Sahni | Master-Slave Robotic Arm",

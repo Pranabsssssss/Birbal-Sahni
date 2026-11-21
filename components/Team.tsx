@@ -26,7 +26,7 @@ const team: TeamMember[] = [
     initials: "PG",
     status: "LINK_ACTIVE",
     hash: "0x7F41B2D",
-    photo: "https://assets.techforge.pranab.xyz/assets/Parth.png",
+    photo: "https://birbalassets.pranab.space/assets/Parth.png",
   },
   {
     name: "Pranab Saini",
@@ -36,7 +36,7 @@ const team: TeamMember[] = [
     initials: "PS",
     status: "SYS_ON_LINE",
     hash: "0x9E20A1F",
-    photo: "https://assets.techforge.pranab.xyz/assets/pranab.png",
+    photo: "https://birbalassets.pranab.space/assets/pranab.png",
   },
   {
     name: "Sidharth Jangid",
@@ -45,7 +45,7 @@ const team: TeamMember[] = [
     initials: "SJ",
     status: "LINK_STABLE",
     hash: "0x3C81F0E",
-    photo: "https://assets.techforge.pranab.xyz/assets/Sidharth.png",
+    photo: "https://birbalassets.pranab.space/assets/Sidharth.png",
   },
   {
     name: "Deepanshu",
@@ -54,7 +54,7 @@ const team: TeamMember[] = [
     initials: "D",
     status: "LINK_STABLE",
     hash: "0x8B12C4D",
-    photo: "https://assets.techforge.pranab.xyz/assets/Deepanshu.png",
+    photo: "https://birbalassets.pranab.space/assets/Deepanshu.png",
   },
   {
     name: "Anshika Awasthi",
@@ -63,7 +63,7 @@ const team: TeamMember[] = [
     initials: "AA",
     status: "CALIBRATING",
     hash: "0x5A90D7C",
-    photo: "https://assets.techforge.pranab.xyz/assets/Anshika%20Awasthi.png",
+    photo: "https://birbalassets.pranab.space/assets/Anshika%20Awasthi.png",
   },
   {
     name: "Pushkar Pal",
@@ -72,7 +72,7 @@ const team: TeamMember[] = [
     initials: "PP",
     status: "LINK_STABLE",
     hash: "0x2D71B8B",
-    photo: "https://assets.techforge.pranab.xyz/assets/Pushkar.png",
+    photo: "https://birbalassets.pranab.space/assets/Pushkar.png",
   },
 ];
 
